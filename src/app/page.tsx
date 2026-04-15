@@ -1,5 +1,4 @@
 import HeroBlend from '@/components/HeroBlend/HeroBlend'
-import styles from './page.module.css'
 
 export default function Home() {
   return (
