@@ -1,0 +1,16 @@
+.after {
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+}
+
+.afterLabel {
+  font-size: clamp(1rem, 2.5vw, 1.5rem);
+  color: oklch(20% 0.035 195);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-weight: 500;
+  opacity: 0.4;
+}

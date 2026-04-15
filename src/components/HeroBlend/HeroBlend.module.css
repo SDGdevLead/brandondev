@@ -1,0 +1,110 @@
+/*
+  ┌──────────────────────────────────────────────────────────────────┐
+  │  Z-index stacking order (within the isolation context)           │
+  │                                                                  │
+  │  z-index: 3  ─  .headline   (mix-blend-mode: difference)        │
+  │  z-index: 2  ─  .sideFill   (static portrait, bottom centre)    │
+  │  z-index: 1  ─  .bgPanel    (flower-bg, expands on scroll)      │
+  │  z-index: 0  ─  hero bg     (white — visible before scroll)     │
+  └──────────────────────────────────────────────────────────────────┘
+*/
+
+.hero {
+  height: 250vh; /* scroll room for the expand animation */
+  isolation: isolate; /* confines blend modes to this section */
+  background-color: #ffffff;
+}
+
+.sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;    /* fallback for browsers without dvh support */
+  height: 100dvh;   /* dynamic viewport height: excludes browser chrome on mobile */
+  overflow: hidden;
+}
+
+/* ── Layer 1: expanding background ──────────────────────────────────────── */
+
+.bgPanel {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  /* clip-path is owned by GSAP — do not set it here */
+  will-change: clip-path; /* promotes to its own GPU layer for smoother animation */
+}
+
+/* ── Layer 2: static side-fill portrait ─────────────────────────────────── */
+
+.sideFill {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+
+  /*
+    Same blend mechanic as the headline: composites against the backdrop
+    (white bg initially, then the expanding flower photo).
+      • Over white:      |image − 255| → inverted image colours
+      • Over flower bg:  |image − flower| → difference of the two photos
+  */
+  mix-blend-mode: difference;
+
+  pointer-events: none;
+}
+
+.sideFillImg {
+  /*
+    ↓ Tweak this value to resize the portrait. ~40vh ≈ half the screen.
+    Width is auto to preserve the native 1148×2026 aspect ratio (~0.57).
+  */
+  height: 40vh;
+  width: auto;
+  display: block;
+
+  /*
+    Flatten all pixels to white so the image behaves like the headline:
+    mix-blend-mode: difference on the parent then composites white against
+    the backdrop — dark on white bg, inverted when the flower photo expands.
+  */
+  filter: brightness(0) invert(1);
+}
+
+/* ── Layer 3: headline ───────────────────────────────────────────────────── */
+
+.headline {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: 0;
+  padding: 4vw 5vw 0;
+  text-align: center;
+
+  z-index: 3; /* above both image layers */
+
+  /*
+    mix-blend-mode: difference composites text against its full backdrop.
+    With color: white (255,255,255):
+      • White bg only (on load): |255 − 255| = 0   → black  ✓
+      • Flower bg under text:    |255 − px|  varies → inverted  ✓
+  */
+  mix-blend-mode: difference;
+  color: #ffffff;
+
+  font-family: var(--font-jost), system-ui, sans-serif;
+  /*
+    Minimum of 1rem (not 2.5rem) so 8vw drives the size down to small
+    screens without overflowing — "BRANDON O'BOYLE" needs ~8vw to fit
+    comfortably at any width above ~300px.
+  */
+  font-size: clamp(1rem, 8vw, 9rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  white-space: nowrap;
+
+  pointer-events: none;
+  user-select: none;
+}
