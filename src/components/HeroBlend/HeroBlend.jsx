@@ -24,16 +24,12 @@ export default function HeroBlend() {
     gsap.ticker.lagSmoothing(0)
     lenis.on('scroll', ScrollTrigger.update)
 
-    // Refresh ScrollTrigger on resize/orientation change so trigger positions
-    // stay accurate — particularly important on mobile where the browser
-    // chrome shows/hides and changes the viewport height mid-session.
     const onResize = () => ScrollTrigger.refresh()
     window.addEventListener('resize', onResize)
 
     // ─── Scroll-driven background expand ─────────────────────────────────
-    // circle(radius at cx cy): starts as a zero-radius circle at the
-    // bottom centre of the viewport, grows to 150% radius on scroll —
-    // large enough to reach every corner from that origin point.
+    // Only bgPanel is animated — the blend layers live inside it and are
+    // clipped automatically, so there is only one expanding circle.
     const anim = gsap.fromTo(
       bgRef.current,
       { clipPath: 'circle(0% at 50% 100%)' },
@@ -58,18 +54,41 @@ export default function HeroBlend() {
   }, [])
 
   return (
-    /*
-      isolation: isolate confines the headline's mix-blend-mode to this
-      section only — it won't composite against the navbar or content below.
-    */
     <section ref={sectionRef} className={styles.hero}>
       <div className={styles.sticky}>
 
         {/*
-          ── Layer 1: expanding background photo ─ z-index: 1 ─────────────
-          Starts clipped to nothing at the bottom centre; GSAP expands it
-          to fill the full viewport as the user scrolls.
-          Sits behind both the side-fill portrait and the headline.
+          ── Layer 1: natural side-fill portrait ─ z-index: 1 ─────────────
+          Natural portrait shown on initial page load, before any scroll.
+          Covered by the expanding bgPanel as it grows.
+        */}
+        <div className={styles.naturalSideFill}>
+          <Image
+            src="/side-fill-waist.webp"
+            alt=""
+            width={1148}
+            height={2026}
+            className={styles.naturalSideFillImg}
+            priority
+          />
+        </div>
+
+        {/*
+          ── Layer 2: natural headline ─ z-index: 2 ────────────────────────
+          Dark text visible on the white background before scroll begins.
+          Covered by the expanding bgPanel on scroll.
+        */}
+        <p className={styles.naturalHeadline}>Brandon O&apos;Boyle</p>
+
+        {/*
+          ── Layer 3: expanding background + blend layers ─ z-index: 3 ─────
+          bgPanel is the sole animated element. The blend sideFill and
+          headline live inside it so they are clipped by the same
+          circle — one expanding circle, no duplicate edges.
+
+          Because bgPanel creates a stacking context (will-change:
+          clip-path), the blend children composite against the flower
+          photo inside the circle, which is the intended end state.
         */}
         <div ref={bgRef} className={styles.bgPanel}>
           <Image
@@ -79,36 +98,22 @@ export default function HeroBlend() {
             style={{ objectFit: 'cover', objectPosition: 'center center' }}
             priority
           />
+
+          {/* Blend portrait — composites against flower photo */}
+          <div className={styles.sideFill}>
+            <Image
+              src="/side-fill-waist.webp"
+              alt=""
+              width={1148}
+              height={2026}
+              className={styles.sideFillImg}
+              priority
+            />
+          </div>
+
+          {/* Blend headline — composites against flower photo */}
+          <h1 className={styles.headline}>PORTFOLIO SITE</h1>
         </div>
-
-        {/*
-          ── Layer 2: static side-fill portrait ─ z-index: 2 ──────────────
-          Natural proportions, anchored to the bottom centre of the
-          viewport. Sits above the expanding background so it's always
-          fully visible. No blend mode — renders as-is.
-        */}
-        <div className={styles.sideFill}>
-          <Image
-            src="/side-fill-waist.webp"
-            alt=""
-            width={1148}
-            height={2026}
-            className={styles.sideFillImg}
-            priority
-          />
-        </div>
-
-        {/*
-          ── Layer 3: headline ─ z-index: 3 ───────────────────────────────
-          Sits above both image layers so mix-blend-mode composites the
-          text against the full backdrop (white bg → expanding photo).
-
-          mix-blend-mode: difference with color: white:
-            • Over white background: |255 − 255| = 0   → black text  ✓
-            • Over dark image px:    |255 − 20|  = 235 → light text  ✓
-            • Over light image px:   |255 − 220| = 35  → dark text   ✓
-        */}
-        <h1 className={styles.headline}>BRANDON O&apos;BOYLE</h1>
 
       </div>
     </section>

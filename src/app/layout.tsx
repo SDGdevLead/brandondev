@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
-import { Jost } from "next/font/google";
+import { Geist, Jost } from "next/font/google";
 import "./globals.css";
+
+const geist = Geist({
+  variable: "--font-geist",
+  subsets: ["latin"],
+});
 
 const jost = Jost({
   variable: "--font-jost",
@@ -18,7 +23,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={jost.variable}>
+    <html lang="en" className={`${geist.variable} ${jost.variable}`}>
       <body>{children}</body>
     </html>
   );

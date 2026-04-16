@@ -1,11 +1,14 @@
 /*
   ┌──────────────────────────────────────────────────────────────────┐
-  │  Z-index stacking order (within the isolation context)           │
+  │  Z-index stacking order                                          │
   │                                                                  │
-  │  z-index: 3  ─  .headline   (mix-blend-mode: difference)        │
-  │  z-index: 2  ─  .sideFill   (static portrait, bottom centre)    │
-  │  z-index: 1  ─  .bgPanel    (flower-bg, expands on scroll)      │
-  │  z-index: 0  ─  hero bg     (white — visible before scroll)     │
+  │  z-index: 3  ─  .bgPanel > .headline  (blend, local to bgPanel) │
+  │  z-index: 2  ─  .bgPanel > .sideFill  (blend, local to bgPanel) │
+  │  z-index: 1  ─  .bgPanel              (flower-bg, clip animated)│
+  │  ─ ─ ─ ─ ─ ─ ─ clip boundary: blend layers only visible inside ─│
+  │  z-index: 2  ─  .naturalHeadline (dark text, visible on load)   │
+  │  z-index: 1  ─  .naturalSideFill (natural portrait, on load)    │
+  │  z-index: 0  ─  hero bg          (white — visible before scroll) │
   └──────────────────────────────────────────────────────────────────┘
 */
 
@@ -23,24 +26,68 @@
   overflow: hidden;
 }
 
-/* ── Layer 1: expanding background ──────────────────────────────────────── */
+/* ── Layer 1: natural side-fill portrait (pre-scroll) ───────────────────── */
+
+.naturalSideFill {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.naturalSideFillImg {
+  height: 40vh;
+  width: auto;
+  display: block;
+}
+
+/* ── Layer 2: natural headline (pre-scroll) ──────────────────────────────── */
+
+.naturalHeadline {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: 0;
+  padding: 4vw 5vw 0;
+  text-align: center;
+
+  z-index: 2;
+
+  color: #111111;
+
+  font-family: var(--font-jost), system-ui, sans-serif;
+  font-size: clamp(1rem, 8vw, 9rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  white-space: nowrap;
+
+  pointer-events: none;
+  user-select: none;
+}
+
+/* ── Layer 3: expanding background ──────────────────────────────────────── */
 
 .bgPanel {
   position: absolute;
   inset: 0;
-  z-index: 1;
+  z-index: 3;
   /* clip-path is owned by GSAP — do not set it here */
   will-change: clip-path; /* promotes to its own GPU layer for smoother animation */
 }
 
-/* ── Layer 2: static side-fill portrait ─────────────────────────────────── */
+/* ── Layer 4: blend side-fill portrait ──────────────────────────────────── */
 
 .sideFill {
   position: absolute;
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 2;
+  z-index: 2; /* local to bgPanel stacking context: above flower, below headline */
 
   /*
     Same blend mechanic as the headline: composites against the backdrop
@@ -70,7 +117,7 @@
   filter: brightness(0) invert(1);
 }
 
-/* ── Layer 3: headline ───────────────────────────────────────────────────── */
+/* ── Layer 5: blend headline ─────────────────────────────────────────────── */
 
 .headline {
   position: absolute;
@@ -81,7 +128,7 @@
   padding: 4vw 5vw 0;
   text-align: center;
 
-  z-index: 3; /* above both image layers */
+  z-index: 3; /* local to bgPanel stacking context: above flower and sideFill */
 
   /*
     mix-blend-mode: difference composites text against its full backdrop.

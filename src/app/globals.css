@@ -12,7 +12,7 @@ html {
 }
 
 body {
-  font-family: var(--font-jost), system-ui, sans-serif;
+  font-family: var(--font-geist), system-ui, sans-serif;
   background-color: #ffffff;
   color: oklch(20% 0.035 195);
   -webkit-font-smoothing: antialiased;
