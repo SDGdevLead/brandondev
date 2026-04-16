@@ -1,0 +1,125 @@
+
+<style>
+  .palette-wrap { padding: 1.5rem 0; }
+  .group-label { font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-text-tertiary); margin: 1.5rem 0 0.5rem; }
+  .group-label:first-of-type { margin-top: 0; }
+  .swatch-row { display: grid; grid-template-columns: 44px 1fr auto; align-items: center; gap: 12px; padding: 8px 0; border-bottom: 0.5px solid var(--color-border-tertiary); }
+  .swatch-row:last-child { border-bottom: none; }
+  .swatch { width: 44px; height: 44px; border-radius: 8px; border: 0.5px solid rgba(0,0,0,0.08); flex-shrink: 0; }
+  .swatch-info { display: flex; flex-direction: column; gap: 2px; }
+  .token-name { font-size: 13px; font-weight: 500; color: var(--color-text-primary); font-family: var(--font-mono, monospace); }
+  .token-desc { font-size: 12px; color: var(--color-text-secondary); }
+  .oklch-val { font-size: 12px; font-family: var(--font-mono, monospace); color: var(--color-text-tertiary); white-space: nowrap; text-align: right; }
+  .nav-strip { display: grid; grid-template-columns: repeat(4, 1fr); border-radius: 12px; overflow: hidden; border: 0.5px solid rgba(0,0,0,0.08); margin-top: 2rem; }
+  .nav-cell { padding: 2rem 1.25rem 1.5rem; display: flex; flex-direction: column; gap: 0.5rem; }
+  .nav-num { font-size: 11px; font-weight: 500; opacity: 0.55; font-family: var(--font-mono, monospace); }
+  .nav-label { font-size: 18px; font-weight: 500; }
+  .nav-token { font-size: 10.5px; font-family: var(--font-mono, monospace); margin-top: auto; padding-top: 1.5rem; opacity: 0.6; word-break: break-all; }
+  .rhythm-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 1.25rem; }
+  .rhythm-cell { height: 6px; border-radius: 99px; }
+  .section-divider { font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-text-tertiary); margin: 2.5rem 0 0; padding-top: 1.5rem; border-top: 0.5px solid var(--color-border-tertiary); }
+</style>
+
+<div class="palette-wrap">
+
+  <p class="group-label">Page</p>
+  <div class="swatch-row">
+    <div class="swatch" style="background: oklch(97.5% 0.010 55);"></div>
+    <div class="swatch-info"><span class="token-name">--color-bg</span><span class="token-desc">Page background</span></div>
+    <span class="oklch-val">oklch(97.5% 0.010 55)</span>
+  </div>
+  <div class="swatch-row">
+    <div class="swatch" style="background: oklch(95% 0.015 50);"></div>
+    <div class="swatch-info"><span class="token-name">--color-surface</span><span class="token-desc">Cards, panels</span></div>
+    <span class="oklch-val">oklch(95% 0.015 50)</span>
+  </div>
+  <div class="swatch-row">
+    <div class="swatch" style="background: oklch(92% 0.022 45);"></div>
+    <div class="swatch-info"><span class="token-name">--color-surface-raised</span><span class="token-desc">Elevated, nested surfaces</span></div>
+    <span class="oklch-val">oklch(92% 0.022 45)</span>
+  </div>
+  <div class="swatch-row">
+    <div class="swatch" style="background: oklch(87% 0.028 40);"></div>
+    <div class="swatch-info"><span class="token-name">--color-border</span><span class="token-desc">Dividers, input borders</span></div>
+    <span class="oklch-val">oklch(87% 0.028 40)</span>
+  </div>
+
+  <p class="group-label">Text</p>
+  <div class="swatch-row">
+    <div class="swatch" style="background: oklch(20% 0.035 195);"></div>
+    <div class="swatch-info"><span class="token-name">--color-text</span><span class="token-desc">Headings, body copy</span></div>
+    <span class="oklch-val">oklch(20% 0.035 195)</span>
+  </div>
+  <div class="swatch-row">
+    <div class="swatch" style="background: oklch(46% 0.030 190);"></div>
+    <div class="swatch-info"><span class="token-name">--color-text-muted</span><span class="token-desc">Captions, metadata</span></div>
+    <span class="oklch-val">oklch(46% 0.030 190)</span>
+  </div>
+
+  <p class="group-label">Brand</p>
+  <div class="swatch-row">
+    <div class="swatch" style="background: oklch(65% 0.185 42);"></div>
+    <div class="swatch-info"><span class="token-name">--color-primary</span><span class="token-desc">CTAs, links, focus rings</span></div>
+    <span class="oklch-val">oklch(65% 0.185 42)</span>
+  </div>
+  <div class="swatch-row">
+    <div class="swatch" style="background: oklch(58% 0.185 42);"></div>
+    <div class="swatch-info"><span class="token-name">--color-primary-hover</span><span class="token-desc">Button hover/active</span></div>
+    <span class="oklch-val">oklch(58% 0.185 42)</span>
+  </div>
+  <div class="swatch-row">
+    <div class="swatch" style="background: oklch(88% 0.065 48);"></div>
+    <div class="swatch-info"><span class="token-name">--color-primary-subtle</span><span class="token-desc">Highlights, badges, tag fills</span></div>
+    <span class="oklch-val">oklch(88% 0.065 48)</span>
+  </div>
+  <div class="swatch-row">
+    <div class="swatch" style="background: oklch(92% 0.038 55);"></div>
+    <div class="swatch-info"><span class="token-name">--color-bloom</span><span class="token-desc">Decorative cream, gradient stops</span></div>
+    <span class="oklch-val">oklch(92% 0.038 55)</span>
+  </div>
+
+  <p class="group-label">Accent</p>
+  <div class="swatch-row">
+    <div class="swatch" style="background: oklch(68% 0.115 196);"></div>
+    <div class="swatch-info"><span class="token-name">--color-accent</span><span class="token-desc">Icons, selected states, contrast pop</span></div>
+    <span class="oklch-val">oklch(68% 0.115 196)</span>
+  </div>
+  <div class="swatch-row">
+    <div class="swatch" style="background: oklch(85% 0.065 196);"></div>
+    <div class="swatch-info"><span class="token-name">--color-accent-subtle</span><span class="token-desc">Teal tint, section backgrounds</span></div>
+    <span class="oklch-val">oklch(85% 0.065 196)</span>
+  </div>
+
+  <p class="section-divider">Navigation mapping</p>
+
+  <div class="nav-strip">
+    <div class="nav-cell" style="background: oklch(65% 0.185 42); color: #fff;">
+      <span class="nav-num">(01)</span>
+      <span class="nav-label">Work</span>
+      <span class="nav-token">--color-primary<br>oklch(65% 0.185 42)</span>
+    </div>
+    <div class="nav-cell" style="background: oklch(85% 0.065 196); color: oklch(20% 0.035 195);">
+      <span class="nav-num">(02)</span>
+      <span class="nav-label">About</span>
+      <span class="nav-token">--color-accent-subtle<br>oklch(85% 0.065 196)</span>
+    </div>
+    <div class="nav-cell" style="background: oklch(92% 0.038 55); color: oklch(20% 0.035 195);">
+      <span class="nav-num">(03)</span>
+      <span class="nav-label">Services</span>
+      <span class="nav-token">--color-bloom<br>oklch(92% 0.038 55)</span>
+    </div>
+    <div class="nav-cell" style="background: oklch(68% 0.115 196); color: #fff;">
+      <span class="nav-num">(04)</span>
+      <span class="nav-label">Contact</span>
+      <span class="nav-token">--color-accent<br>oklch(68% 0.115 196)</span>
+    </div>
+  </div>
+
+  <div class="rhythm-row" style="margin-top: 1rem;">
+    <div class="rhythm-cell" style="background: oklch(65% 0.185 42);"></div>
+    <div class="rhythm-cell" style="background: oklch(85% 0.065 196);"></div>
+    <div class="rhythm-cell" style="background: oklch(92% 0.038 55);"></div>
+    <div class="rhythm-cell" style="background: oklch(68% 0.115 196);"></div>
+  </div>
+
+</div>

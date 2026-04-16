@@ -1,3 +1,25 @@
+:root {
+  /* Page */
+  --color-bg:             oklch(97.5% 0.010 55);
+  --color-surface:        oklch(95%   0.015 50);
+  --color-surface-raised: oklch(92%   0.022 45);
+  --color-border:         oklch(87%   0.028 40);
+
+  /* Text */
+  --color-text:           oklch(20%   0.035 195);
+  --color-text-muted:     oklch(46%   0.030 190);
+
+  /* Brand — coral */
+  --color-primary:        oklch(65%   0.185 42);
+  --color-primary-hover:  oklch(58%   0.185 42);
+  --color-primary-subtle: oklch(88%   0.065 48);
+  --color-bloom:          oklch(92%   0.038 55);
+
+  /* Accent — teal */
+  --color-accent:         oklch(68%   0.115 196);
+  --color-accent-subtle:  oklch(85%   0.065 196);
+}
+
 *,
 *::before,
 *::after {
@@ -12,8 +34,8 @@ html {
 }
 
 body {
-  font-family: var(--font-geist), system-ui, sans-serif;
-  background-color: #ffffff;
-  color: oklch(20% 0.035 195);
+  font-family: var(--font-dm-sans), system-ui, sans-serif;
+  background-color: var(--color-bg);
+  color: var(--color-text);
   -webkit-font-smoothing: antialiased;
 }

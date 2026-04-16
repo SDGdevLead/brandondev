@@ -15,7 +15,7 @@
 .hero {
   height: 250vh; /* scroll room for the expand animation */
   isolation: isolate; /* confines blend modes to this section */
-  background-color: #ffffff;
+  background-color: var(--color-bg);
 }
 
 .sticky {
@@ -58,8 +58,8 @@
 
   color: #111111;
 
-  font-family: var(--font-jost), system-ui, sans-serif;
-  font-size: clamp(1rem, 8vw, 9rem);
+  font-family: var(--font-syne), system-ui, sans-serif;
+  font-size: 6rem; /* fallback — JS fitHeadline() overrides this on mount */
   font-weight: 800;
   line-height: 1;
   letter-spacing: -0.02em;
@@ -139,13 +139,8 @@
   mix-blend-mode: difference;
   color: #ffffff;
 
-  font-family: var(--font-jost), system-ui, sans-serif;
-  /*
-    Minimum of 1rem (not 2.5rem) so 8vw drives the size down to small
-    screens without overflowing — "BRANDON O'BOYLE" needs ~8vw to fit
-    comfortably at any width above ~300px.
-  */
-  font-size: clamp(1rem, 8vw, 9rem);
+  font-family: var(--font-syne), system-ui, sans-serif;
+  font-size: 6rem; /* fallback — JS fitHeadline() overrides this on mount */
   font-weight: 800;
   line-height: 1;
   letter-spacing: -0.02em;

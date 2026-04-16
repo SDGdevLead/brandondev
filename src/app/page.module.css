@@ -3,12 +3,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #ffffff;
+  background-color: var(--color-bg);
 }
 
 .afterLabel {
   font-size: clamp(1rem, 2.5vw, 1.5rem);
-  color: oklch(20% 0.035 195);
+  color: var(--color-text);
   letter-spacing: 0.04em;
   text-transform: uppercase;
   font-weight: 500;
