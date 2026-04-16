@@ -59,7 +59,7 @@
   color: #111111;
 
   font-family: var(--font-syne), system-ui, sans-serif;
-  font-size: 6rem; /* fallback — JS fitHeadline() overrides this on mount */
+  font-size: clamp(1rem, 5.5vw, 6.5rem);
   font-weight: 800;
   line-height: 1;
   letter-spacing: -0.02em;
@@ -140,7 +140,7 @@
   color: #ffffff;
 
   font-family: var(--font-syne), system-ui, sans-serif;
-  font-size: 6rem; /* fallback — JS fitHeadline() overrides this on mount */
+  font-size: clamp(1rem, 5.5vw, 6.5rem);
   font-weight: 800;
   line-height: 1;
   letter-spacing: -0.02em;
