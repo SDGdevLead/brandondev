@@ -13,8 +13,9 @@
 */
 
 .hero {
-  height: 250vh; /* scroll room for the expand animation */
-  isolation: isolate; /* confines blend modes to this section */
+  height: 100vh;
+  height: 100dvh;
+  isolation: isolate;
   background-color: var(--color-bg);
 }
 
@@ -38,7 +39,7 @@
 }
 
 .naturalSideFillImg {
-  height: 40vh;
+  height: 50vh;
   width: auto;
   display: block;
 }
@@ -105,7 +106,7 @@
     ↓ Tweak this value to resize the portrait. ~40vh ≈ half the screen.
     Width is auto to preserve the native 1148×2026 aspect ratio (~0.57).
   */
-  height: 40vh;
+  height: 50vh;
   width: auto;
   display: block;
 
