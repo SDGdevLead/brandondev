@@ -56,9 +56,9 @@
 
   z-index: 2;
 
-  color: #111111;
+  color: var(--color-text);
 
-  font-family: var(--font-syne), system-ui, sans-serif;
+  font-family: var(--font-display), system-ui, sans-serif;
   font-size: clamp(1rem, 5.5vw, 6.5rem);
   font-weight: 800;
   line-height: 1;

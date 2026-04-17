@@ -1,10 +1,12 @@
+import Link from 'next/link'
 import HeroBlend from '@/components/HeroBlend/HeroBlend'
+import SectionsReveal from '@/components/SectionsReveal'
 import styles from './page.module.css'
 
 const WORKS = [
-  { id: '01', title: 'Apps', category: 'Web & Mobile Applications', year: '', accent: 'primary' },
-  { id: '02', title: 'Sites', category: 'Marketing & Portfolio Sites', year: '', accent: 'accent'  },
-  { id: '03', title: 'Tools', category: 'Dev Tools & Utilities', year: '', accent: 'surface' },
+  { id: '01', title: 'Apps',  category: 'Web & Mobile Applications', accent: 'primary', href: '/apps'  },
+  { id: '02', title: 'Sites', category: 'Marketing & Portfolio Sites', accent: 'accent',  href: '/sites' },
+  { id: '03', title: 'Tools', category: 'Dev Tools & Utilities',       accent: 'surface', href: '/tools' },
 ]
 
 const SKILLS = [
@@ -20,7 +22,7 @@ export default function Home() {
     <main>
       <HeroBlend />
 
-      <div className={styles.sections}>
+      <SectionsReveal>
 
         {/* ── Projects ─────────────────────────────────────────── */}
         <section id="work" className={styles.section}>
@@ -30,7 +32,7 @@ export default function Home() {
           </header>
           <div className={styles.workGrid}>
             {WORKS.map(w => (
-              <article key={w.id} className={`${styles.workCard} ${styles[`workCard_${w.accent}`]}`}>
+              <Link key={w.id} href={w.href} className={`${styles.workCard} ${styles[`workCard_${w.accent}`]}`}>
                 <div className={styles.workCardThumb} />
                 <footer className={styles.workCardFoot}>
                   <div>
@@ -38,7 +40,7 @@ export default function Home() {
                     <p className={styles.workCardMeta}>{w.category}</p>
                   </div>
                 </footer>
-              </article>
+              </Link>
             ))}
           </div>
         </section>
@@ -84,7 +86,7 @@ export default function Home() {
         </section>
 
         {/* ── Contact ──────────────────────────────────────── */}
-        {/* <section id="contact" className={styles.section}>
+        <section id="contact" className={styles.section}>
           <header className={styles.sectionHead}>
             <span className={styles.sectionNum}>04</span>
             <h2 className={styles.sectionTitle}>Contact</h2>
@@ -95,9 +97,9 @@ export default function Home() {
               brandon.ohboil@icloud.com
             </a>
           </div>
-        </section> */}
+        </section>
 
-      </div>
+      </SectionsReveal>
     </main>
   )
 }

@@ -1,0 +1,112 @@
+/* ── Page wrapper ────────────────────────────────────────────────────────── */
+.page {
+  min-height: 100dvh;
+  padding: 6rem 5vw 8rem;
+}
+
+/* ── Page header ─────────────────────────────────────────────────────────── */
+.back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  text-decoration: none;
+  margin-bottom: 3rem;
+  transition: color 0.2s ease;
+}
+
+.back:hover {
+  color: var(--color-text);
+}
+
+.pageHead {
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 3rem;
+  margin-bottom: 4rem;
+}
+
+.pageTitle {
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-size: clamp(3rem, 9vw, 9rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  line-height: 0.9;
+  color: var(--color-text);
+  margin-bottom: 1.25rem;
+}
+
+.pageMeta {
+  font-family: var(--font-body), system-ui, sans-serif;
+  font-size: clamp(0.875rem, 1.4vw, 1.1rem);
+  color: var(--color-text-muted);
+  letter-spacing: 0.03em;
+}
+
+/* ── Project grid ────────────────────────────────────────────────────────── */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+/* ── Project card ────────────────────────────────────────────────────────── */
+.card {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  overflow: hidden;
+  transition: transform 0.35s ease;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+}
+
+.cardThumb {
+  aspect-ratio: 4 / 3;
+  background-color: var(--color-surface);
+  transition: filter 0.35s ease;
+}
+
+.card:hover .cardThumb {
+  filter: brightness(0.95);
+}
+
+.cardFoot {
+  padding: 1.25rem 0 0;
+  border-top: 1px solid var(--color-border);
+}
+
+.cardTitle {
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: -0.01em;
+  color: var(--color-text);
+  margin-bottom: 0.2rem;
+}
+
+.cardMeta {
+  font-family: var(--font-body), system-ui, sans-serif;
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+}
+
+/* ── Empty state ─────────────────────────────────────────────────────────── */
+.empty {
+  font-family: var(--font-body), system-ui, sans-serif;
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  padding: 4rem 0;
+}
+
+/* ── Project embed (individual project pages) ────────────────────────────── */
+.projectContent {
+  max-width: 900px;
+}

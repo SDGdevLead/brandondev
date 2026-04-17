@@ -1,15 +1,28 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useLayoutEffect, useRef } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import styles from "./HeroBlend.module.css";
+import { hasIntroPlayed, markIntroPlayed } from "@/lib/introState";
 
 export default function HeroBlend() {
   const sectionRef = useRef(null);
   const bgRef = useRef(null);
 
+  // Runs before paint — instantly hides hero on back navigation
+  useLayoutEffect(() => {
+    if (hasIntroPlayed()) {
+      sectionRef.current.style.display = "none";
+    }
+  }, []);
+
   useEffect(() => {
+    if (hasIntroPlayed()) return;
+
+    // Mark before the animation so that any re-render during the sequence skips correctly
+    markIntroPlayed();
+
     const anim = gsap.fromTo(
       bgRef.current,
       { clipPath: "circle(0% at 50% 100%)" },

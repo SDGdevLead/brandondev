@@ -1,15 +1,15 @@
 import type { Metadata } from "next";
-import { Syne, DM_Sans } from "next/font/google";
+import { Bricolage_Grotesque, Figtree } from "next/font/google";
 import Nav from "@/components/Nav/Nav";
 import "./globals.css";
 
-const syne = Syne({
-  variable: "--font-syne",
+const bricolageGrotesque = Bricolage_Grotesque({
+  variable: "--font-display",
   subsets: ["latin"],
 });
 
-const dmSans = DM_Sans({
-  variable: "--font-dm-sans",
+const figtree = Figtree({
+  variable: "--font-body",
   subsets: ["latin"],
 });
 
@@ -24,7 +24,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${syne.variable} ${dmSans.variable}`}>
+    <html lang="en" className={`${bricolageGrotesque.variable} ${figtree.variable}`}>
       <body>
         <Nav />
         {children}
