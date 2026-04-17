@@ -2,9 +2,9 @@ import HeroBlend from '@/components/HeroBlend/HeroBlend'
 import styles from './page.module.css'
 
 const WORKS = [
-  { id: '01', title: 'Nudge', category: 'AI Tool · Web App', year: '2025', accent: 'primary' },
-  { id: '02', title: 'Level One Game Pub', category: 'Web Design & Development', year: '2024', accent: 'accent'  },
-  { id: '03', title: 'brandonoboyle.com', category: 'Portfolio · Creative Dev', year: '2025', accent: 'surface' },
+  { id: '01', title: 'Apps', category: 'Web & Mobile Applications', year: '', accent: 'primary' },
+  { id: '02', title: 'Sites', category: 'Marketing & Portfolio Sites', year: '', accent: 'accent'  },
+  { id: '03', title: 'Tools', category: 'Dev Tools & Utilities', year: '', accent: 'surface' },
 ]
 
 const SKILLS = [
@@ -22,21 +22,20 @@ export default function Home() {
 
       <div className={styles.sections}>
 
-        {/* ── Work ─────────────────────────────────────────── */}
+        {/* ── Projects ─────────────────────────────────────────── */}
         <section id="work" className={styles.section}>
           <header className={styles.sectionHead}>
             <span className={styles.sectionNum}>01</span>
-            <h2 className={styles.sectionTitle}>Selected Work</h2>
+            <h2 className={styles.sectionTitle}>PROJECTS</h2>
           </header>
           <div className={styles.workGrid}>
             {WORKS.map(w => (
               <article key={w.id} className={`${styles.workCard} ${styles[`workCard_${w.accent}`]}`}>
                 <div className={styles.workCardThumb} />
                 <footer className={styles.workCardFoot}>
-                  <span className={styles.workCardNum}>{w.id}</span>
                   <div>
                     <p className={styles.workCardTitle}>{w.title}</p>
-                    <p className={styles.workCardMeta}>{w.category} — {w.year}</p>
+                    <p className={styles.workCardMeta}>{w.category}</p>
                   </div>
                 </footer>
               </article>
@@ -44,11 +43,11 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ── About ────────────────────────────────────────── */}
+        {/* ── Personal ────────────────────────────────────────── */}
         <section id="about" className={styles.section}>
           <header className={styles.sectionHead}>
             <span className={styles.sectionNum}>02</span>
-            <h2 className={styles.sectionTitle}>About</h2>
+            <h2 className={styles.sectionTitle}>Personal</h2>
           </header>
           <div className={styles.aboutText}>
             <p className={styles.aboutLead}>
@@ -62,21 +61,21 @@ export default function Home() {
               TypeScript, and Figma to take ideas from concept to launch.
             </p>
             <p className={styles.aboutCredentials}>
-              Google UX Design Certificate · Front-End Development, University of Alberta · BA Psychology, Trent University
+              Google UX Design Certificate · Front-End Development, University of Calgary · BA Psychology, Trent University
             </p>
           </div>
         </section>
 
-        {/* ── Skills ───────────────────────────────────────── */}
+        {/* ── Professional ───────────────────────────────────────── */}
         <section id="skills" className={styles.section}>
           <header className={styles.sectionHead}>
             <span className={styles.sectionNum}>03</span>
-            <h2 className={styles.sectionTitle}>Skills</h2>
+            <h2 className={styles.sectionTitle}>Professional</h2>
           </header>
           <ul className={styles.skillList}>
-            {SKILLS.map((s, i) => (
+            {SKILLS.map((s) => (
               <li key={s.label} className={styles.skillItem}>
-                <span className={styles.skillNum}>{String(i + 1).padStart(2, '0')}</span>
+                
                 <span className={styles.skillLabel}>{s.label}</span>
                 <span className={styles.skillDetail}>{s.detail}</span>
               </li>
@@ -85,7 +84,7 @@ export default function Home() {
         </section>
 
         {/* ── Contact ──────────────────────────────────────── */}
-        <section id="contact" className={styles.section}>
+        {/* <section id="contact" className={styles.section}>
           <header className={styles.sectionHead}>
             <span className={styles.sectionNum}>04</span>
             <h2 className={styles.sectionTitle}>Contact</h2>
@@ -96,7 +95,7 @@ export default function Home() {
               brandon.ohboil@icloud.com
             </a>
           </div>
-        </section>
+        </section> */}
 
       </div>
     </main>

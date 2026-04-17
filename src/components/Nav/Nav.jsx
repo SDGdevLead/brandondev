@@ -5,9 +5,9 @@ import gsap from "gsap";
 import styles from "./Nav.module.css";
 
 const PILLARS = [
-  { label: "ABOUT",    number: "01", href: "#about"    },
-  { label: "WORK",     number: "02", href: "#work"     },
-  { label: "SKILLS",   number: "03", href: "#skills"   },
+  { label: "PROJECTS",     number: "01", href: "#work"     },
+  { label: "PERSONAL",    number: "02", href: "#about"    },
+  { label: "PROFESSIONAL",   number: "03", href: "#skills"   },
 ];
 
 // Colors ordered lightest → darkest so dark is last in DOM (highest z-index)
@@ -57,10 +57,10 @@ export default function Nav() {
         stagger: { each: 0.1, from: "end" },
         ease: "power3.inOut",
       }, "<").to(document.body, {
-        paddingRight: "14rem",
+        paddingRight: "10.5rem",
         duration: 0.75,
         ease: "power3.inOut",
-      }, "<");
+      }, "<").set("#hero-blend", { display: "none" }, "<");
     });
 
     return () => ctx.revert();

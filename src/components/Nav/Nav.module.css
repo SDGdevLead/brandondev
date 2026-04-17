@@ -75,17 +75,17 @@
 
 /* ── Pillar colors (mapped from project palette) ─────────────────────────── */
 
-.pillarWORK {
+.pillarPROJECTS {
   background-color: var(--color-accent);
   color: var(--color-bg);
 }
 
-.pillarABOUT {
+.pillarPERSONAL {
   background-color: var(--color-primary);
   color: var(--color-bg);
 }
 
-.pillarSKILLS {
+.pillarPROFESSIONAL {
   background-color: var(--color-text);
   color: var(--color-bg);
 }

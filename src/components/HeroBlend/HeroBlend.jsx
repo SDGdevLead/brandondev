@@ -27,7 +27,7 @@ export default function HeroBlend() {
   }, []);
 
   return (
-    <section ref={sectionRef} className={styles.hero}>
+    <section ref={sectionRef} id="hero-blend" className={styles.hero}>
       <div className={styles.sticky}>
         <div className={styles.naturalSideFill}>
           <Image
