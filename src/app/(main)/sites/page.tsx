@@ -12,7 +12,7 @@ export default function SitesPage() {
       </header>
       <div className={styles.grid}>
         {sites.map((p, i) => (
-          <Link key={p.slug} href={`/sites/${p.slug}`} className={`${styles.card} ${styles[`card_${(['primary','accent','surface'] as const)[i % 3]}`]}`}>
+          <Link key={p.slug} href={p.url ?? `/sites/${p.slug}`} target={p.url ? '_blank' : undefined} rel={p.url ? 'noopener noreferrer' : undefined} className={`${styles.card} ${styles[`card_${(['primary','accent','surface'] as const)[i % 3]}`]}`}>
             <div className={styles.cardTop}>
               <span className={styles.cardNum}>{String(i + 1).padStart(2, '0')}</span>
               <span className={styles.cardArrow}>→</span>
