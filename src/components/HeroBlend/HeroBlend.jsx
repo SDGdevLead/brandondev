@@ -58,6 +58,7 @@ export default function HeroBlend() {
             src="/flower-background.webp"
             alt=""
             fill
+            sizes="100vw"
             style={{ objectFit: "cover", objectPosition: "center center" }}
             priority
           />

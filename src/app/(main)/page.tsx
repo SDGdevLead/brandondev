@@ -93,10 +93,7 @@ export default function Home() {
             <h2 className={styles.sectionTitle}>Contact</h2>
           </header>
           <div className={styles.contactInner}>
-            <p className={styles.contactLead}>Let&apos;s work<br />together.</p>
-            <a href="mailto:brandon.ohboil@icloud.com" className={styles.contactEmail}>
-              brandon.ohboil@icloud.com
-            </a>
+            <a href="mailto:brandon.ohboil@icloud.com" className={styles.contactLead}>Let&apos;s work<br />together.</a>
           </div>
         </section>
 

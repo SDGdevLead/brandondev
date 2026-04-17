@@ -1,15 +1,16 @@
 "use client";
 
 import { useEffect, useLayoutEffect, useRef } from "react";
+import { usePathname } from "next/navigation";
 import gsap from "gsap";
 import styles from "./Nav.module.css";
 import { hasIntroPlayed } from "@/lib/introState";
 
 const PILLARS = [
-  { label: "PROJECTS",     number: "01", href: "#work"    },
-  { label: "PERSONAL",     number: "02", href: "#about"   },
-  { label: "PROFESSIONAL", number: "03", href: "#skills"  },
-  { label: "CONTACT",      number: "04", href: "#contact" },
+  { label: "PROJECTS",     number: "01", hash: "work"    },
+  { label: "PERSONAL",     number: "02", hash: "about"   },
+  { label: "PROFESSIONAL", number: "03", hash: "skills"  },
+  { label: "CONTACT",      number: "04", hash: "contact" },
 ];
 
 const SWIPE_COLORS = [
@@ -27,19 +28,21 @@ const OPEN         = "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)";
 export default function Nav() {
   const pillarsRef = useRef(null);
   const swipeRefs  = useRef([]);
+  const pathname   = usePathname();
+  const isHome     = pathname === "/";
 
-  // Runs before paint — instantly applies end state on back navigation
+  // Runs before paint — instantly applies end state on back navigation or non-home pages
   useLayoutEffect(() => {
-    if (!hasIntroPlayed()) return;
-
-    gsap.set(pillarsRef.current, { autoAlpha: 1 });
-    gsap.set(document.body, { paddingRight: "14rem" });
-    const heroEl = document.getElementById("hero-blend");
-    if (heroEl) gsap.set(heroEl, { display: "none" });
-  }, []);
+    if (!isHome || hasIntroPlayed()) {
+      gsap.set(pillarsRef.current, { autoAlpha: 1 });
+      gsap.set(document.body, { paddingRight: "14rem" });
+      const heroEl = document.getElementById("hero-blend");
+      if (heroEl) gsap.set(heroEl, { display: "none" });
+    }
+  }, [isHome]);
 
   useEffect(() => {
-    if (hasIntroPlayed()) return;
+    if (!isHome || hasIntroPlayed()) return;
 
     const ctx = gsap.context(() => {
       gsap.set(pillarsRef.current, { autoAlpha: 0 });
@@ -86,8 +89,8 @@ export default function Nav() {
       ))}
 
       <nav className={styles.pillars} ref={pillarsRef}>
-        {PILLARS.map(({ label, number, href }) => (
-          <a key={label} href={href} className={`${styles.pillar} ${styles[`pillar${label}`]}`}>
+        {PILLARS.map(({ label, number, hash }) => (
+          <a key={label} href={isHome ? `#${hash}` : `/#${hash}`} className={`${styles.pillar} ${styles[`pillar${label}`]}`}>
             <span className={styles.pillarText}>{number} {label}</span>
           </a>
         ))}
