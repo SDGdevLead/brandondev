@@ -2,7 +2,6 @@
   ┌──────────────────────────────────────────────────────────────────┐
   │  Z-index stacking order                                          │
   │                                                                  │
-  │  z-index: 3  ─  .bgPanel > .headline  (blend, local to bgPanel) │
   │  z-index: 2  ─  .bgPanel > .sideFill  (blend, local to bgPanel) │
   │  z-index: 1  ─  .bgPanel              (flower-bg, clip animated)│
   │  ─ ─ ─ ─ ─ ─ ─ clip boundary: blend layers only visible inside ─│
@@ -118,36 +117,3 @@
   filter: brightness(0) invert(1);
 }
 
-/* ── Layer 5: blend headline ─────────────────────────────────────────────── */
-
-.headline {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  margin: 0;
-  padding: 4vw 5vw 0;
-  text-align: center;
-
-  z-index: 3; /* local to bgPanel stacking context: above flower and sideFill */
-
-  /*
-    mix-blend-mode: difference composites text against its full backdrop.
-    With color: white (255,255,255):
-      • White bg only (on load): |255 − 255| = 0   → black  ✓
-      • Flower bg under text:    |255 − px|  varies → inverted  ✓
-  */
-  mix-blend-mode: difference;
-  color: #ffffff;
-
-  font-family: var(--font-syne), system-ui, sans-serif;
-  font-size: clamp(1rem, 5.5vw, 6.5rem);
-  font-weight: 800;
-  line-height: 1;
-  letter-spacing: -0.02em;
-  text-transform: uppercase;
-  white-space: nowrap;
-
-  pointer-events: none;
-  user-select: none;
-}

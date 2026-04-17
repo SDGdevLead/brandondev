@@ -1,0 +1,91 @@
+/* ── Intro swipe panel ───────────────────────────────────────────────────── */
+
+.swipePanel {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  clip-path: polygon(100% 0%, 100% 0%, 100% 100%, 100% 100%);
+  pointer-events: none;
+  will-change: clip-path;
+}
+
+/* ── Logo ────────────────────────────────────────────────────────────────── */
+
+.logo {
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 1.5rem 2rem;
+  z-index: 100;
+}
+
+.logo a {
+  text-decoration: none;
+  color: var(--color-text);
+  font-family: var(--font-syne), system-ui, sans-serif;
+  font-weight: 800;
+  font-size: 1.25rem;
+  letter-spacing: -0.02em;
+}
+
+/* ── Pillar column ───────────────────────────────────────────────────────── */
+
+.pillars {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100svh;
+  display: flex;
+  flex-direction: row;
+  z-index: 100;
+}
+
+/* ── Individual pillar ───────────────────────────────────────────────────── */
+
+.pillar {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  width: 3.5rem;
+  height: 100%;
+  text-decoration: none;
+  padding-bottom: 2rem;
+  transition: width 0.3s ease;
+}
+
+.pillar:hover {
+  width: 4rem;
+}
+
+/* ── Rotated label ───────────────────────────────────────────────────────── */
+
+.pillarText {
+  writing-mode: vertical-lr;
+  transform: rotate(180deg);
+  font-family: var(--font-syne), system-ui, sans-serif;
+  font-weight: 800;
+  font-size: 1.75rem;
+  letter-spacing: 1.5em;
+  text-transform: uppercase;
+  user-select: none;
+  white-space: nowrap;
+  text-align: start;
+}
+
+
+/* ── Pillar colors (mapped from project palette) ─────────────────────────── */
+
+.pillarWORK {
+  background-color: var(--color-accent);
+  color: var(--color-bg);
+}
+
+.pillarABOUT {
+  background-color: var(--color-primary);
+  color: var(--color-bg);
+}
+
+.pillarSKILLS {
+  background-color: var(--color-text);
+  color: var(--color-bg);
+}

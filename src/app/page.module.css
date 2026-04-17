@@ -1,16 +1,310 @@
-.after {
-  min-height: 60vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: var(--color-bg);
+/* ── Entrance ───────────────────────────────────────────────────────────── */
+/* HeroBlend finishes at 3s, nav swipe panels add ~1.5s → reveal at ~4.3s  */
+.sections {
+  animation: revealPage 0.8s ease 4.3s both;
 }
 
-.afterLabel {
-  font-size: clamp(1rem, 2.5vw, 1.5rem);
-  color: var(--color-text);
-  letter-spacing: 0.04em;
+@keyframes revealPage {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+
+/* ── Hero ────────────────────────────────────────────────────────────────── */
+.hero {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 5rem 5vw 3rem;
+}
+
+.heroTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: var(--font-syne), system-ui, sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  font-weight: 500;
-  opacity: 0.4;
+  color: var(--color-text-muted);
+  padding-top: 1.5rem;
+}
+
+.heroStatus {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.heroStatus::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--color-primary);
+  animation: pulse 2.4s ease infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.35; }
+}
+
+.heroName {
+  font-family: var(--font-syne), system-ui, sans-serif;
+  font-weight: 800;
+  font-size: clamp(4.5rem, 15.5vw, 17rem);
+  line-height: 0.88;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  color: var(--color-text);
+  display: flex;
+  flex-direction: column;
+  margin: auto 0;
+  padding-block: 2rem;
+}
+
+.heroBottom {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.heroRole {
+  font-family: var(--font-dm-sans), system-ui, sans-serif;
+  font-size: clamp(0.875rem, 1.4vw, 1.15rem);
+  color: var(--color-text-muted);
+  letter-spacing: 0.04em;
+}
+
+.heroScroll {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-syne), system-ui, sans-serif;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.heroScrollLine {
+  display: block;
+  width: 1px;
+  height: 3rem;
+  background-color: var(--color-border);
+}
+
+/* ── Section base ────────────────────────────────────────────────────────── */
+.section {
+  padding: 6rem 5vw;
+  border-top: 1px solid var(--color-border);
+}
+
+.sectionHead {
+  display: flex;
+  align-items: baseline;
+  gap: 1.5rem;
+  margin-bottom: 4rem;
+}
+
+.sectionNum {
+  font-family: var(--font-syne), system-ui, sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.sectionTitle {
+  font-family: var(--font-syne), system-ui, sans-serif;
+  font-size: clamp(2rem, 5vw, 4.5rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: var(--color-text);
+  line-height: 1;
+}
+
+/* ── Work ────────────────────────────────────────────────────────────────── */
+.workGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.workCard {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.35s ease;
+}
+
+.workCard:hover {
+  transform: translateY(-6px);
+}
+
+.workCardThumb {
+  aspect-ratio: 4 / 3;
+  background-color: var(--color-surface);
+  transition: filter 0.35s ease;
+}
+
+.workCard:hover .workCardThumb {
+  filter: brightness(0.95);
+}
+
+.workCard_primary .workCardThumb { background-color: var(--color-primary-subtle); }
+.workCard_accent  .workCardThumb { background-color: var(--color-accent-subtle);  }
+.workCard_surface .workCardThumb { background-color: var(--color-surface-raised); }
+
+.workCardFoot {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.25rem 0 0;
+  border-top: 1px solid var(--color-border);
+  margin-top: 0;
+}
+
+.workCardNum {
+  font-family: var(--font-syne), system-ui, sans-serif;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: var(--color-text-muted);
+}
+
+.workCardTitle {
+  font-family: var(--font-syne), system-ui, sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: -0.01em;
+  color: var(--color-text);
+  margin-bottom: 0.2rem;
+}
+
+.workCardMeta {
+  font-family: var(--font-dm-sans), system-ui, sans-serif;
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+}
+
+/* ── About ───────────────────────────────────────────────────────────────── */
+.aboutText {
+  max-width: 72ch;
+}
+
+.aboutLead {
+  font-family: var(--font-dm-sans), system-ui, sans-serif;
+  font-size: clamp(1.1rem, 2.2vw, 1.7rem);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.55;
+  color: var(--color-text);
+  margin-bottom: 2rem;
+}
+
+.aboutBody {
+  font-family: var(--font-dm-sans), system-ui, sans-serif;
+  font-size: clamp(0.9rem, 1.2vw, 1.05rem);
+  line-height: 1.8;
+  color: var(--color-text-muted);
+  margin-bottom: 2.5rem;
+}
+
+.aboutCredentials {
+  font-family: var(--font-syne), system-ui, sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  border-top: 1px solid var(--color-border);
+  padding-top: 1.5rem;
+}
+
+/* ── Skills ──────────────────────────────────────────────────────────────── */
+.skillList {
+  list-style: none;
+}
+
+.skillItem {
+  display: flex;
+  align-items: baseline;
+  gap: 2rem;
+  padding: 2rem 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.skillItem:first-child {
+  border-top: 1px solid var(--color-border);
+}
+
+.skillNum {
+  font-family: var(--font-syne), system-ui, sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: var(--color-text-muted);
+  min-width: 2rem;
+}
+
+.skillLabel {
+  font-family: var(--font-syne), system-ui, sans-serif;
+  font-weight: 800;
+  font-size: clamp(1.5rem, 4vw, 3.5rem);
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: var(--color-text);
+  flex: 1;
+  line-height: 1;
+}
+
+.skillDetail {
+  font-family: var(--font-dm-sans), system-ui, sans-serif;
+  font-size: clamp(0.75rem, 1vw, 0.9rem);
+  color: var(--color-text-muted);
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+/* ── Contact ─────────────────────────────────────────────────────────────── */
+.contactInner {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.contactLead {
+  font-family: var(--font-syne), system-ui, sans-serif;
+  font-weight: 800;
+  font-size: clamp(3rem, 9vw, 9rem);
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  line-height: 0.9;
+  color: var(--color-text);
+}
+
+.contactEmail {
+  display: inline-block;
+  font-family: var(--font-dm-sans), system-ui, sans-serif;
+  font-size: clamp(0.9rem, 1.4vw, 1.1rem);
+  color: var(--color-primary);
+  text-decoration: none;
+  border-bottom: 1px solid var(--color-primary);
+  padding-bottom: 2px;
+  transition: color 0.2s ease, border-color 0.2s ease;
+  align-self: flex-start;
+}
+
+.contactEmail:hover {
+  color: var(--color-primary-hover);
+  border-color: var(--color-primary-hover);
 }

@@ -58,7 +58,6 @@ export default function HeroBlend() {
               priority
             />
           </div>
-          <h1 className={styles.headline}>PORTFOLIO SITE</h1>
         </div>
       </div>
     </section>
