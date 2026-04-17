@@ -11,10 +11,13 @@ export default function ToolsPage() {
         <p className={styles.pageMeta}>Dev Tools & Utilities</p>
       </header>
       <div className={styles.grid}>
-        {tools.map(p => (
-          <Link key={p.slug} href={`/tools/${p.slug}`} className={styles.card}>
-            <div className={styles.cardThumb} />
-            <div className={styles.cardFoot}>
+        {tools.map((p, i) => (
+          <Link key={p.slug} href={`/tools/${p.slug}`} className={`${styles.card} ${styles[`card_${(['primary','accent','surface'] as const)[i % 3]}`]}`}>
+            <div className={styles.cardTop}>
+              <span className={styles.cardNum}>{String(i + 1).padStart(2, '0')}</span>
+              <span className={styles.cardArrow}>→</span>
+            </div>
+            <div>
               <p className={styles.cardTitle}>{p.title}</p>
               <p className={styles.cardMeta}>{p.tags.join(' · ')}</p>
             </div>

@@ -1,7 +1,7 @@
 "use client";
 
 import { useLayoutEffect, useRef } from "react";
-import styles from "@/app/page.module.css";
+import styles from "@/app/(main)/page.module.css";
 import { hasIntroPlayed } from "@/lib/introState";
 
 export default function SectionsReveal({ children }: { children: React.ReactNode }) {

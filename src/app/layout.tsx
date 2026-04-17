@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Bricolage_Grotesque, Figtree } from "next/font/google";
-import Nav from "@/components/Nav/Nav";
 import "./globals.css";
 
 const bricolageGrotesque = Bricolage_Grotesque({
@@ -26,7 +25,6 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${bricolageGrotesque.variable} ${figtree.variable}`}>
       <body>
-        <Nav />
         {children}
       </body>
     </html>

@@ -33,13 +33,14 @@ export default function Home() {
           <div className={styles.workGrid}>
             {WORKS.map(w => (
               <Link key={w.id} href={w.href} className={`${styles.workCard} ${styles[`workCard_${w.accent}`]}`}>
-                <div className={styles.workCardThumb} />
-                <footer className={styles.workCardFoot}>
-                  <div>
-                    <p className={styles.workCardTitle}>{w.title}</p>
-                    <p className={styles.workCardMeta}>{w.category}</p>
-                  </div>
-                </footer>
+                <div className={styles.workCardTop}>
+                  <span className={styles.workCardNum}>{w.id}</span>
+                  <span className={styles.workCardArrow}>→</span>
+                </div>
+                <div className={styles.workCardBottom}>
+                  <p className={styles.workCardTitle}>{w.title}</p>
+                  <p className={styles.workCardMeta}>{w.category}</p>
+                </div>
               </Link>
             ))}
           </div>

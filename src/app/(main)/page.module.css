@@ -43,58 +43,75 @@
 /* ── Work ────────────────────────────────────────────────────────────────── */
 .workGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.25rem;
 }
 
 .workCard {
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+  justify-content: space-between;
+  min-height: 300px;
+  padding: 1.75rem;
   text-decoration: none;
   cursor: pointer;
-  transition: transform 0.35s ease;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-.workCard:hover {
-  transform: translateY(-6px);
-}
+.workCard:hover  { transform: translateY(-8px); }
+.workCard:active { transform: scale(0.98); transition-duration: 0.15s; }
 
-.workCardThumb {
-  aspect-ratio: 4 / 3;
-  background-color: var(--color-surface);
-  transition: filter 0.35s ease;
-}
+.workCard_primary { background-color: var(--color-primary-subtle); }
+.workCard_accent  { background-color: var(--color-accent-subtle);  }
+.workCard_surface { background-color: var(--color-surface-raised); }
 
-.workCard:hover .workCardThumb {
-  filter: brightness(0.95);
-}
-
-.workCard_primary .workCardThumb { background-color: var(--color-primary-subtle); }
-.workCard_accent  .workCardThumb { background-color: var(--color-accent-subtle);  }
-.workCard_surface .workCardThumb { background-color: var(--color-surface-raised); }
-
-.workCardFoot {
+.workCardTop {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  gap: 1.5rem;
-  padding: 1.25rem 0 0;
-  border-top: 1px solid var(--color-border);
+}
+
+.workCardNum {
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.workCardArrow {
+  font-size: 1.2rem;
+  color: var(--color-text-muted);
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), color 0.2s ease;
+  line-height: 1;
+}
+
+.workCard:hover .workCardArrow {
+  transform: rotate(45deg) translate(3px, -3px);
+  color: var(--color-text);
 }
 
 .workCardTitle {
   font-family: var(--font-display), system-ui, sans-serif;
-  font-weight: 700;
-  font-size: 1rem;
-  letter-spacing: -0.01em;
+  font-weight: 800;
+  font-size: clamp(2.5rem, 4.5vw, 3.75rem);
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
   color: var(--color-text);
-  margin-bottom: 0.2rem;
+  line-height: 1;
+  margin-bottom: 0.5rem;
 }
 
 .workCardMeta {
   font-family: var(--font-body), system-ui, sans-serif;
   font-size: 0.8rem;
   color: var(--color-text-muted);
+  letter-spacing: 0.01em;
+}
+
+@media (max-width: 480px) {
+  .workGrid { grid-template-columns: 1fr; }
 }
 
 /* ── About ───────────────────────────────────────────────────────────────── */
