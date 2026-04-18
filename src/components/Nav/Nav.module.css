@@ -93,3 +93,98 @@
   background-color: var(--color-surface-raised);
   color: var(--color-text);
 }
+
+/* ── Mobile hamburger ────────────────────────────────────────────────────── */
+
+.hamburger {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 300;
+  width: 2.75rem;
+  height: 2.75rem;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.4rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.hamburger span {
+  display: block;
+  width: 1.75rem;
+  height: 2px;
+  background: var(--color-text);
+  border-radius: 2px;
+  transition: transform 0.3s ease, opacity 0.25s ease, background-color 0.3s ease;
+}
+
+.hamburgerOpen span {
+  background: var(--color-bg);
+}
+
+.hamburgerOpen span:nth-child(1) {
+  transform: translateY(0.52rem) rotate(45deg);
+}
+
+.hamburgerOpen span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburgerOpen span:nth-child(3) {
+  transform: translateY(-0.52rem) rotate(-45deg);
+}
+
+/* ── Mobile menu (stacked pillars that drop from the top) ────────────────── */
+
+.mobileMenu {
+  position: fixed;
+  inset: 0;
+  z-index: 150;
+  display: none;
+  flex-direction: column;
+  pointer-events: none;
+}
+
+.mobileMenuOpen {
+  pointer-events: auto;
+}
+
+.mobilePillar {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1.75rem;
+  text-decoration: none;
+  transform: translateY(-100vh);
+  will-change: transform;
+}
+
+.mobilePillarNumber {
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  opacity: 0.75;
+}
+
+.mobilePillarLabel {
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-weight: 800;
+  font-size: clamp(2.25rem, 10vw, 3.75rem);
+  letter-spacing: -0.02em;
+  line-height: 1;
+  text-transform: uppercase;
+  text-align: right;
+}
+
+@media (max-width: 768px) {
+  .pillars { display: none; }
+  .hamburger { display: flex; }
+  .mobileMenu { display: flex; }
+}
